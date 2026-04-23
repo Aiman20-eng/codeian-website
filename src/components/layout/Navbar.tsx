@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import SafeImage from "@/components/ui/SafeImage";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -41,14 +42,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 overflow-hidden rounded-full bg-white/5 p-1 border border-white/10 group-hover:border-cyan-500/50 transition-colors">
-              <img 
+              <SafeImage 
                 src="/logo.png" 
                 alt="لوجو كوديان" 
+                width={40}
+                height={40}
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  // Fallback if image doesn't exist
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
               />
             </div>
             <span className="text-2xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">

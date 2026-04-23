@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, Users, Trophy, Code } from "lucide-react";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 
 const stats = [
   { value: "+50", label: "مشروع مكتمل", icon: <CheckCircle2 className="text-cyan-400" size={24} /> },
@@ -69,13 +69,12 @@ export default function AboutPage() {
             className="relative"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 blur-3xl rounded-full" />
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 glass-card">
-              <Image 
+            <div className="relative h-[500px] rounded-2xl overflow-hidden border border-white/10 glass-card">
+              <SafeImage 
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop" 
                 alt="فريق كوديان" 
-                width={800}
-                height={500}
-                className="w-full h-[500px] object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
+                fill
+                className="object-cover opacity-80 hover:opacity-100 transition-opacity duration-500"
               />
             </div>
           </motion.div>

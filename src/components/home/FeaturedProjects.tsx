@@ -2,33 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import SafeImage from "@/components/ui/SafeImage";
 
-const projects = [
-  {
-    id: 1,
-    title: "منصة تجارة إلكترونية متطورة",
-    category: "تطوير ويب",
-    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=800&auto=format&fit=crop",
-    slug: "ecommerce-platform"
-  },
-  {
-    id: 2,
-    title: "تطبيق إدارة المهام الذكي",
-    category: "تطبيق هاتف",
-    image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=800&auto=format&fit=crop",
-    slug: "smart-task-manager"
-  },
-  {
-    id: 3,
-    title: "نظام حجوزات طبي",
-    category: "حلول مخصصة",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop",
-    slug: "medical-booking"
-  }
-];
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+  slug: string;
+}
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({ initialProjects = [] }: { initialProjects?: Project[] }) {
+  const displayProjects = initialProjects.length > 0 ? initialProjects : [];
+
   return (
     <section className="py-24 relative z-10 bg-zinc-950">
       <div className="container mx-auto px-4 lg:px-8">
@@ -67,7 +53,7 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
@@ -77,7 +63,7 @@ export default function FeaturedProjects() {
               className="group relative rounded-2xl overflow-hidden aspect-[4/5] cursor-pointer"
             >
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 z-10" />
-              <Image
+              <SafeImage
                 src={project.image}
                 alt={project.title}
                 fill

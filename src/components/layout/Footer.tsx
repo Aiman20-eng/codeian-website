@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SafeImage from "@/components/ui/SafeImage";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FaTwitter, FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
 
@@ -13,13 +14,12 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="inline-flex items-center gap-3">
               <div className="relative w-12 h-12 overflow-hidden rounded-full bg-white/5 p-1 border border-white/10">
-                <img 
-                  src="/logo.png" 
-                  alt="لوجو كوديان" 
+                <SafeImage
+                  src="/logo.png"
+                  alt="Codeian Logo"
+                  width={32}
+                  height={32}
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
                 />
               </div>
               <span className="text-3xl font-black tracking-tight text-white">
