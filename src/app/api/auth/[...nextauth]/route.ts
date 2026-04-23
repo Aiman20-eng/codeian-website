@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
+export const dynamic = "force-dynamic";
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -21,7 +23,6 @@ const handler = NextAuth({
         });
 
         if (!admin) {
-          // Fallback static admin for testing before DB is populated
           if (credentials.email === "admin@codeian.dev" && credentials.password === "Codeian@2026") {
              return { id: "1", name: "كوديان أدمن", email: credentials.email };
           }
@@ -55,7 +56,8 @@ const handler = NextAuth({
       }
       return session;
     }
-  }
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export { handler as GET, handler as POST };
